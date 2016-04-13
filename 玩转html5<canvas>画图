@@ -1,0 +1,592 @@
+//Book Name:html5与css3权威指南
+//Author:陆凌牛
+//Article Author:leave
+//Reference Article:玩转html5<canvas>画图
+//Reference Article Author:TimeLangoliers
+//Reference URL:http://www.cnblogs.com/tim-li/archive/2012/08/06/2580252.html
+//Someday I find this blog and I want learn some knowledge about canvas, this blog make me understand a lot about canvas information, so I sort out this blog and add some personl understanding.
+//我想学习一些canvas的知识 有天在网上找到了这篇文章 他让我了解了很多有关canvas的东西 于是整理了一下 添加了一些注释
+
+
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<title>canvas</title>
+<link title="http://www.cnblogs.com/tim-li/archive/2012/08/06/2580252.html#0">
+</head>
+
+<body>
+    <canvas id="canvas" style="background:#f6f6f6;" width="400" height="300"></canvas>
+
+<script>
+             var canvas = document.getElementById("canvas")
+			 //定义fx获取context封装对象
+             var context = canvas.getContext("2d");
+
+/*
+             //填充fill() 路径rect(x,y,width,height) 填充路径fillRect() 默认fillStyle=black
+             context.fillRect(0, 0, 100, 100);
+             //边框 默认strokeStyle=black
+             context.strokeRect(120, 0, 100, 100);
+ 
+             //填充样式
+             context.fillStyle = "red";
+			 //边框样式
+             context.strokeStyle = "blue";
+             context.fillRect(0, 120, 100, 100);
+             context.strokeRect(120, 120, 100, 100);
+ 
+             
+             context.fillStyle = "rgba(255,0,0,0.2)";
+             context.strokeStyle = "rgba(255,0,0,0.2)";
+             context.fillRect(240,0 , 100, 100);
+             context.strokeRect(240, 120, 100, 100);
+			 
+			 //清除矩形区域fx.clearRect(X,Y,Width,Height)
+			 context.clearRect(50,50,240,120)
+*/
+
+
+/*			 
+			 //圆弧fx.arc(X,Y,半径,开始角度,结束角度[Math.PI=180°],是否顺时针)
+			 //开始路径
+			 context.beginPath();
+			 context.arc(200,150,100,0,Math.PI*2,true)
+			 //关闭路径
+			 context.closePath()
+			 context.fillStyle='rgba(0,255,0,0.25)'
+			 //填充
+			 context.fill()
+*/
+
+
+
+			 
+/*			 
+			 //路径 fx.beginPath() fx.closePath()
+			 //演示fill、stroke、beginPath、closePath的关系
+			 //如无特殊要求画路径前后加beginPath()、closePath()
+			 
+			 //context.beginPath();
+			 context.arc(100,150,50,0,Math.PI/2,false)
+			 context.fillStyle='rgba(255,0,0,0.25)'
+			 context.fill();
+			 context.strokeStyle='rgba(255,0,0,0.5)'
+			 //context.closePath()
+			 context.stroke();
+			 
+			 //context.beginPath();
+			 context.arc(300,150,50,0,Math.PI/2,false)
+			 context.fillStyle='rgba(255,0,0,0.25)'
+			 //context.fill();
+			 context.strokeStyle='rgba(255,0,0,0.5)'
+			 context.closePath()
+			 context.stroke();
+*/			 
+
+
+/*
+			 //moveTo(X,Y),lineTo(X,Y)
+			 context.strokeStyle="rgb(255,0,0)"
+			 context.fillStyle="rgb(255,0,0)"
+			 //lineTo 连接到某点
+			 context.lineTo(100,100)
+			 context.lineTo(50,200)
+			 context.lineTo(80,250)
+			 //moveTo 初始化起点
+			 context.moveTo(250,250)
+			 context.lineTo(300,100)
+			 //连线 fill在三点以上有效
+			 context.stroke()
+*/
+
+
+/*
+			 //lineTO 例子
+			 context.fillStyle="#EEEEFF";
+			 context.fillRect(0, 0, 400, 300);
+			 var n = 0;
+			 var dx = 150;
+			 var dy = 150;
+			 var s = 100;
+			 context.beginPath();
+			 context.fillStyle = 'rgb(100,255,100)';
+			 context.strokeStyle = 'rgb(0,0,100)';
+			 var x = Math.sin(90);
+			 var y = Math.cos(90);
+			 var dig = Math.PI / 15 * 11;
+			 for (var i = 0; i < 30; i++) {
+				 	var x = Math.sin(i * dig);
+					var y = Math.cos(i * dig);
+					context.lineTo(dx + x * s, dy + y * s);
+				 }
+				 context.closePath();
+				 context.fill();
+				 context.stroke();
+*/
+
+
+/*
+			 //三次曲线(有两个控制点)	fx.bezierCurveTo(firstControlX,firstControlY,secondControlX,secondControlY,endX,endY)
+			 context.beginPath()
+			 //moveTo(x,y)定义起点
+			 context.moveTo(100,100)
+			 context.bezierCurveTo(100,200,200,200,200,100);
+			 context.stroke();
+			 //二次曲线(一个控制点)	fx.quadraticCurveTo
+
+(firstControlX,firstControlY,endX,endY)
+			 //起点为上个路径的终点
+			 //未定义起点以上个终点做起点
+			 context.quadraticCurveTo(150,250,250,250)
+			 context.stroke();
+*/
+
+/*			 
+			 //曲线例子
+			 context.fillStyle = "#EEEFF";
+			 context.fillRect(0, 0, 400, 300);
+			 var n = 0;
+			 var dx = 150;
+			 var dy = 150;
+			 var s = 100;
+			 context.beginPath();
+			 context.globalCompositeOperation = 'and';
+			 context.fillStyle = 'rgb(100,255,100)';
+			 var x = Math.sin(90);
+			 var y = Math.cos(90);
+			 var dig = Math.PI / 15 * 11;
+			 context.moveTo(dx, dy);
+			 for (var i = 0; i < 30; i++) {
+				 	var x = Math.sin(i * dig);
+					var y = Math.cos(i * dig);
+					context.bezierCurveTo(dx + x * s, dy + y * s - 100, dx + x * s + 100, dy + y * s, dx + x * s, dy + y * s);
+				 }
+				 context.closePath();
+				 context.fill();
+				 context.stroke();
+*/
+
+
+/*
+			 //线性渐变var fx2 = fx.createLinearGradient(startX,startY,endX,endY)	渐变颜色fx2.addColorStop(位置[start=0,end=1],color)
+			 var a=context.createLinearGradient(0,0,400,0);
+			 a.addColorStop(0,'rgb(255,0,0)');//red
+			 a.addColorStop(0.5,'rgb(0,255,0)');//green
+			 a.addColorStop(1,'rgb(0,0,255)');//blue
+			 //填充样式为 线性渐变
+			 context.fillStyle = a;
+			 //画出填充域
+			 context.fillRect(0,0,400,300)
+*/			 
+
+
+/*
+			 //径向渐变var fx2=fx.creatRadialGradient(startX,startY,初始半径,endX,endY,结束半径)	颜色fx2.addColorStop(位置[start=0,end=1],color)
+			 //同心圆
+			 var a = context.createRadialGradient(200, 150, 0, 200, 150, 100);
+			 a.addColorStop(0.1, 'rgb(255,0,0)');
+			 a.addColorStop(1, 'rgb(50,0,0)');
+			 context.fillStyle = a;
+			 context.beginPath();
+			 context.arc(200, 150, 100, 0, Math.PI * 2, true);
+			 context.closePath();
+			 context.fill();
+			 //非同心圆
+			 var b = context.createRadialGradient(100, 150, 10, 300, 150, 50);
+			 b.addColorStop(0.1, 'rgb(255,0,0)');
+			 b.addColorStop(0.7, 'rgb(0,255,0)');
+			 b.addColorStop(1, 'rgb(0,0,255)');
+			 context.fillStyle = b;
+			 context.fillRect(0,0,400,300);
+*/
+			 
+
+/*
+			 //变形(平移fx.translate(dx,dy)旋转fx.rotate(角度)缩放fx.scale(a,b))
+			 //保存fx 
+			 context.save()
+			 context.fillStyle = "rgba(255,0,0,0.1)";
+			 //相对平移(x,y)
+			 context.translate(100,0)
+			 //缩放(a,b)
+			 context.scale(0.3, 0.3);
+			 //旋转(角度)
+			 context.rotate(120);
+			 //填充区域
+			 context.fillRect(0, 0, 100, 100);
+			 //描边区域
+			 context.strokeRect(0,0,100,100)
+			 
+			 //变换效果顺序对结果的影响实验
+			 //恢复保存的fx  (只能用一次)
+			 context.restore();
+			 //restore只能用一次 恢复后再次保存
+			 context.save();
+			 //平移缩放旋转
+			 context.fillStyle="rgba(255,255,0,0.1)"
+			 context.translate(100,100)
+			 context.scale(0.5,0.5)
+			 context.rotate(Math.PI/4)
+			 context.fillRect(0,0,100,100)
+			 
+			 context.restore()
+			 context.save()
+			 //平移旋转缩放
+			 context.fillStyle="rgba(0,255,0,0.1)"
+			 context.translate(100,100)
+			 context.rotate(Math.PI/4)
+			 context.scale(0.5,0.5)
+			 context.fillRect(0,0,100,100)
+			 //上面两个在同一位置（绿色）
+			 
+			 //紫色
+			 context.restore()
+			 context.save()
+			 //缩放平移旋转
+			 context.fillStyle="rgba(255,0,255,1)"
+			 context.scale(0.5,0.5)
+			 context.translate(100,100)
+			 context.rotate(Math.PI/4)
+			 context.fillRect(0,0,100,100)
+			 
+			 //红色
+			 context.restore()
+			 context.save()
+			 //旋转平移缩放
+			 context.fillStyle="rgba(255,0,0,1)"
+			 context.rotate(Math.PI/4)
+			 context.translate(100,100)
+			 context.scale(0.5,0.5)
+			 context.fillRect(0,0,100,100)
+			 
+			 //下面两个在同一位置（蓝色）
+			 context.restore()
+			 context.save()
+			 //缩放旋转平移
+			 context.fillStyle="rgba(0,255,255,1)"
+			 context.scale(0.5,0.5)
+			 context.rotate(Math.PI/4)
+			 context.translate(100,100)
+			 context.fillRect(0,0,100,100)
+			 
+			 context.restore()
+			 context.save()
+			 //旋转缩放平移
+			 context.fillStyle="rgba(0,255,255,0.1)"
+			 context.rotate(Math.PI/4)
+			 context.scale(0.5,0.5)
+			 context.translate(100,100)
+			 context.fillRect(0,0,100,100)
+			 
+			 //变形是对坐标轴缩放旋转平移 坐标轴值不变 顺序不同效果不同
+*/			 
+
+
+/*
+			 //矩阵变换fx.transform(m11[宽度fillRect.width的倍数],m12[右侧垂直偏移宽度fillRect.width的倍数 下+上-],m21[下方水平偏移高度fillRect.height的倍数右+左-],m22[高度fillRect.height的倍数],dx[相对fillRect.x水平移动],dy[相对fillRect.y垂直移动])
+			 //每次变换矩阵在前一个基础上变换 可以用save/restore选择相对矩阵
+			 context.fillStyle="rgb(255,0,0)";
+			 context.fillRect(0,0,250,100)
+			 
+			 //context.save()
+			 context.transform(1,0,0,1,50,50);
+			 context.fillStyle="rgb(0,255,0)";
+			 context.fillRect(0,0,250,100);
+			 
+			 //context.restore()
+			 context.transform(1,0.5,-0.5,1,30,10);
+			 context.fillStyle="rgb(0,0,255)";
+			 context.fillRect(0,0,250,100);
+*/
+
+
+
+/*
+			 //组合 fx.globalCompositeOperation="type" 
+			 //source-over:绘制在上层(默认) destination-over:绘制在下层 source-in:显示新图层和原图层的交集 destination-in:显示原图层和新图层的交集 source-out:新图层非交集的部分 destination-out:原图层非交集的部分 source-atop:原图形和交集部分(交集替换原图相应部分) destination-atop:新图形和交集部分(交集替换新图相应部分) lighter:交集部分颜色叠加 xor:交集部分不显示 copy:只显示新图形
+			 //原图
+			 context.fillStyle="blue"
+			 context.fillRect(10,10,60,60)
+			 //组合方式
+			 context.globalCompositeOperation= "source-over"
+			 //开始绘制新图
+			 context.beginPath()
+			 context.fillStyle="red"
+			 context.arc(60,60,30,0,Math.PI*2,false)
+			 //关闭路径
+			 context.closePath()
+			 context.fill()
+*/
+/*			 
+			 //循环显示组合效果
+			 var variable=new Array("source-over","destination-over","source-in","destination-in","source-out","destination-out","source-atop","destination-atop","lighter","xor","copy")
+			 var i=0
+			 
+			 var interval=setInterval(function(){
+				 if(i==10){
+				 	i=0
+				 }else{
+				 	i++
+				 }
+				 context.fillStyle="blue"
+				 context.fillRect(10,10,60,60)
+				 context.globalCompositeOperation=variable[i]
+				 context.beginPath()
+				 context.fillStyle="red"
+				 context.arc(60,60,30,0,Math.PI*2,false)
+				 context.closePath()
+				 context.fill()
+			 },1000)
+*/
+
+/*
+			 //阴影
+			 //fx.shadowOffsetX:水平位移量(默认0)
+			 //fx.shadowOffsetY:垂直位移量(默认0)
+			 //fx.shadowColor:颜色
+			 //fx.shadowBlur:模糊
+			 context.shadowOffsetX=10
+			 context.shadowOffsetY=10
+			 context.shadowColor="rgba(0,0,0,0.5)"
+			 context.shadowBlur=10
+			 context.fillStyle="blue"
+			 context.fillRect(100,100,200,50)
+*/
+/*
+			 //阴影例子 循环找到五个角的点
+			 function createStar(context){
+			 	var n=0
+				var dx=100
+				var dy=0
+				var s=50
+				context.beginPath()
+				context.fillStyle='rgba(255,0,0,0.5)'
+				var x=Math.sin(0)
+				var y=Math.cos(0)
+				var dig=Math.PI/5*4
+				for(var i=0;i<5;i++){
+					var x=Math.sin(i*dig)
+					var y=Math.cos(i*dig)
+					context.lineTo(dx+x*s,dy+y*s)
+				}
+				context.closePath()
+			 }
+			 
+			 context.fillStyle="#EEEEFF"
+			 context.fillRect(0,0,400,300)
+			 context.translate(0,50)
+			 context.shadowOffsetX=10
+			 context.shadowOffsetY=10
+			 context.shadowColor="rgba(0,0,0,0.5)"
+			 context.shadowBlur=10
+			 for(var i=0;i<3;i++){
+			 	context.translate(50,50)
+				createStar(context)
+				context.fill()
+			 }
+*/			
+			 
+			 
+			 
+			 //绘制图像
+			 //绘图 fx.drawImage(img,x,y)  [img:img对象 var img=new Image(); img.src="url(...)"; ]
+			 //fx.drawImage(image,x,y,width,height)
+			 //fx.drawImage(image,sx,sy,sw,sh,dx,dy,dw,dh) [sx:图像上的X坐标 sy:图像上的Y坐标 sw:矩形区域宽度 sh:矩形区域的高度 dx:画在canvas的x坐标 dy:画在canvas的y坐标 dw:画出来的宽度 dh:画出来的高度]
+			 //平铺 fx.createPattern(image,type)
+			 //裁减 fx.clip()
+			 //像素 var fx2=fx.getImageData(sx,sy,sw,sh)
+			 
+/*
+			 //drawImage(image,x,y)
+			 var image=new Image();
+			 image.src="Image/html5.jpg"
+			 context.fillStyle="#EEEEFF"
+			 context.fillRect(0,0,400,300)
+			 image.onload=function(){
+			 	context.drawImage(image,0,0)	 
+			 }
+*/
+/*
+			 //drawImage(image,x,y,w,h)
+			 var image=new Image()
+			 image.src="Image/html5.jpg"
+			 context.fillStyle="#EEEEFF"
+			 context.fillRect(0,0,400,300)
+			 image.onload=function(){
+			 	context.drawImage(image,50,50,300,200)
+			 }
+*/
+/*
+			 //drawImage(image,sx,sy,sw,sh,dx,dy,dw,dh)
+			 var image=new Image()
+			 image.src="Image/html5.jpg"
+			 context.fillStyle="#EEEEFF"
+			 context.fillRect(0,0,400,300)
+			 image.onload=function(){
+				//取的是实际尺寸
+			 	context.drawImage(image,100,100,200,150,50,50,300,200)	 
+			 }			 
+*/
+/*
+			 //平铺fx.createPattern(image,type[no-repeat:不平铺 repeat-x:横轴平铺 repeat-y:纵向平铺 repeat:全方向平铺])
+			 var image=new Image()
+			 var type=["no-repeat","repeat-x","repeat-y","repeat"];
+			 var i=0
+			 image.src="Image/wordslogo.jpg"
+			 image.onload=function(){
+			 	var interval=setInterval(function(){
+					//每次清空
+					context.clearRect(0,0,400,300)
+					if(i>=4){
+						i=0
+					}
+					var ptrn=context.createPattern(image,type[i])
+					context.fillStyle=ptrn
+					context.fillRect(0,0,400,300)
+					i++
+				},1000)
+			 }	
+*/
+/*
+			 //裁剪 context.clip()
+			 context.fillStyle = "black";
+			 context.fillRect(0, 0, 400, 300);
+			 image = new Image();
+			 image.onload = function () {
+			 	drawImg(context,image);
+			 }
+			 image.src = "Image/html5.jpg"
+			 
+			 function drawImg(context, image) {
+				//圆形裁减
+			 	//createCircleClip(context)
+				//星形裁剪
+				create5StarClip(context);
+				context.drawImage(image,0,0)
+			 }
+			 //圆形裁剪
+			 function createCircleClip(context) {
+			 	context.beginPath()
+				context.arc(200,150,100,0,Math.PI*2,true)
+			  	context.closePath()
+				context.clip()
+			 }
+			 //星形裁剪
+			 function create5StarClip(context) {
+			 	var n=0
+				var dx=200
+				var dy=135
+				var s=150
+				context.beginPath()
+				var x=Math.sin(0)
+				var y=Math.cos(0)
+				var dig=Math.PI/5*4
+				for(var i=0;i<5;i++){
+					var x=Math.sin(i*dig)
+					var y=Math.cos(i*dig)
+					context.lineTo(dx+x*s,dy+y*s)
+				}
+				context.closePath()
+			 	context.clip()
+			 }
+*/			 
+
+/*//代码无效 未知
+			 //获取像素数组 var fx1=fx.getImageData(canvas的x轴,canvas的y轴,距离x的宽度,距离y的高度)
+			 //设置像素颜色 fx.putImageData(fx1,起点的x,起点的y,矩形左上角x,矩形左上角y,矩形宽,矩形高)
+			 context.fillStyle = 'red'
+			 context.fillRect(250,250,150,50);
+			 var image = new Image();
+			 image.src = "Image/html5.jpg";
+			 image.onload = function () {
+				context.drawImage(image, 0, 0,200,200);
+				var imagedata = context.getImageData(0, 0, 400, 300);
+				for (var i = 0, n = imagedata.data.length; i < n; i += 4) {
+					//imagedata.data[i + 0] = 255 - imagedata.data[i + 0]//red;
+					//imagedata.data[i + 1] = 255 - imagedata.data[i + 1]//green
+					imagedata.data[i + 2] = 255 - imagedata.data[i + 2]//blue
+					//imagedata.data[i + 3] = 255 - imagedata.data[i + 3]//a
+				}
+				context.putImageData(imagedata, 0, 0)
+			 }
+*/			 
+
+/*
+			 //绘制文字
+			 //填充 fx.fillText(text, x, y)
+			 //描边 fx.strokeText(text, x, y)
+			 //fx.font:字体样式
+			 //fx.textAlign:水平对齐 start|end|right|center
+			 //fx.textBaseline:垂直对齐 top|hanging|middle|alphabetic|ideographic|bottom
+			 //var fx1=fx.measureText(text):计算字体长度
+			 context.fillStyle="red"
+			 context.strokeStyle="green"
+			 context.font="italic 30px 宋体"
+			 context.textBaseline="top"
+			 
+			 var text="Hellow world"
+			 context.fillText(text,0,0)
+			 var length=context.measureText(text)
+			 context.fillText(length.width,0,50)
+			 context.font="bolid 30px sans-serif"
+			 context.strokeText(text,0,100)
+			 context.fillText(length.width,0,150)
+*/
+
+			 //保存[fx的状态] fx.save() 恢复 fx.restore()
+			 //详见*变形
+
+/*//右键菜单改变 新版浏览器用处不大 需要放出拦截
+			 //保存文件canvas.toDataURL(MIME)
+			 //用作生成图片
+			 context.fillStyle="rgb(0,0,255)"
+			 context.fillRect(0,0,canvas.width,canvas.height)
+			 context.fillStyle="rgb(255,255,0)"
+			 context.fillRect(10,20,50,50)
+			 window.open(canvas.toDataURL("image/jpeg"),"smallwin","width=400,height=350")
+*/
+
+//动画 animate
+			 var interal=setInterval(function(){
+			 	move(context)
+			 },1)
+			 
+			 var x=100;y=100;mx=0;my=0;ml=1;w=20;h=20;cw=400;ch=300;
+			 function move(context){
+			 	context.clearRect(0,0,400,300)
+				context.fillStyle="#eeeeff"
+				context.fillRect(0,0,400,300)
+				context.fillStyle="red"
+				context.fillRect(x,y,w,h)
+				if(mx==0){
+					x+=ml
+					if(x>=cw-w){
+						mx=1
+					}
+				}
+				else{
+					x=x-ml
+					if(x<=0){
+						mx=0
+					}
+				}
+				if(my==0){
+					y+=ml
+					if(y>=ch-h){
+						my=1
+					}
+				}
+				else{
+					y-=ml
+					if(y<=0){
+						my=0
+					}
+				}
+			 }
+</script>
+
+
+</body>
+</html>
